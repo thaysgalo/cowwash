@@ -1,0 +1,56 @@
+###################################################
+#                                                 #
+# INSTRUÇÕES PARA EXECUTAR O MÓDULO WEB (SERVLET) #
+#                                                 #
+###################################################
+
+1. INSTALAR:
+
+	a) Java Development Kit - JDK (versão padrão para o OS Ubuntu):
+		- sudo apt-get install default-jdk
+
+	2) Apache HTTP Server 2:
+		- sudo apt-get install apache2
+		(após a instalação, acesse http://localhost para testar.)
+
+	c) Apache Tomcat 9 (Java Web Server):
+		- sudo apt-get install tomcat9
+		(após a instalação, acesse http://localhost:8080 para testar.)
+
+2. Criar (sudo) a seguinte estrutura de diretórios em "/var/lib/tomcat9/webapps/ROOT":
+	
+	/var/lib/tomcat9/webapps/ROOT
+	|
+	|
+	--------- WEB-INF/
+	          |
+	          |
+	          ------------ classes/
+	          |            |
+	          |            |
+	          |            ------------ (arquivos .class)
+	          |
+	          ------------ web.xml
+
+3. Compilar a programa Valvula.java:
+
+    a) Criar uma cópia da biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
+	
+    b) Executar a compilação:
+        - javac -cp .:/usr/share/tomcat9/lib/servlet-api.jar Valvula.java
+
+4. COPIAR:
+
+	a) Copiar o arquivo web.xml para para o diretório "/var/lib/tomcat9/webapps/ROOT/WEB-INF/"
+
+	b) Copiar o bytecode Valvula.class para o diretório "/var/lib/tomcat9/webapps/ROOT/WEB-INF/classes"
+
+5. Reiniciar o serviço do tomcat9:
+
+	- sudo systemctl restart tomcat9
+
+6. Testar a aplicação em funcionamento, acessando (pelo browser):
+
+	- http://127.0.0.1:8080/valvula/consulta-periodo?estado=aberto
+    
+    - http://127.0.0.1:8080/valvula/consulta-periodo?estado=fechado
