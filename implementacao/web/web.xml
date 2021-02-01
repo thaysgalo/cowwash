@@ -1,0 +1,10 @@
+<web-app>
+	<servlet>
+		<servlet-name>valvula</servlet-name>
+		<servlet-class>Valvula</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>valvula</servlet-name>
+		<url-pattern>/valvula/consulta-periodo</url-pattern>
+	</servlet-mapping>
+</web-app>
