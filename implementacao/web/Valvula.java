@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 public class Valvula extends HttpServlet {
-	public void doGet(HttpServletRequest requisicaoHTTP, HttpServletResponse respostaHTTP) throws ServletException, IOException {
+    public void doGet(HttpServletRequest requisicaoHTTP, HttpServletResponse respostaHTTP) throws ServletException, IOException {
         PrintWriter escritorWeb = respostaHTTP.getWriter();
         respostaHTTP.setContentType("application/json");
         respostaHTTP.setCharacterEncoding("UTF-8");
@@ -15,9 +15,9 @@ public class Valvula extends HttpServlet {
         // OS VALORES RETORNADOS ABAIXO ("1" E "2") DEVERÃO VIR DO BANCO DE DADOS.
         String query = requisicaoHTTP.getQueryString();
         if (query.contains("aberto"))
-        escritorWeb.print("1");
+            escritorWeb.print("1");
         else
-        escritorWeb.print("2");
+            escritorWeb.print("2");
         escritorWeb.flush();
-	}
+    }
 }
