@@ -51,6 +51,6 @@
 
 6. Testar a aplicação em funcionamento, acessando (pelo browser):
 
-	- http://127.0.0.1:8080/valvula/consulta-periodo?estado=aberto
-    
+    - http://127.0.0.1:8080/valvula/consulta-periodo?estado=aberto
+
     - http://127.0.0.1:8080/valvula/consulta-periodo?estado=fechado
