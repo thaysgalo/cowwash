@@ -17,9 +17,10 @@ ServicoRede::conectar(void)
         criarConexao();
                 
         while (!estahConectado())
-                // INTERESSANTE ACIONAR UM LED VERMELHO, INFORMANDO A FALTA DE CONECTIVIDADE COM A REDE.
+                // INTERESSANTE ACIONAR UM LED VERMELHO, INFORMANDO UM ALERTA PELA FALTA DE CONECTIVIDADE COM A REDE.
                 delay(500);
-        
+
+        // INTERESSANTE ACIONAR UM LED VERDE, INFORMANDO UMA MENSAGEM DE FORNECIMENTO NORMAL DE CONECTIVIDADE COM A REDE.
         return (true);
 }
 
@@ -27,16 +28,18 @@ String
 ServicoRede::obterDados(const char* arquivo, const char* estado)
 {
         HTTPClient clienteHTTP;
+        WiFiClient clienteWiFi;
         String mensagem;
-
-        clienteHTTP.begin((String)"http://" + endereco + (String)":" + porta + (String)"/" + arquivo + (String)"?estado=" + estado);
+        
+        clienteHTTP.begin(clienteWiFi, (String)"http://" + endereco + (String)":" + porta + (String)"/" + arquivo + (String)"?estado=" + estado);
         int codigoRetornoHTTP = clienteHTTP.GET();
         
         if (codigoRetornoHTTP < 0 || codigoRetornoHTTP != HTTP_CODE_OK)
                 return ("1");
-
+                
         mensagem = clienteHTTP.getString();
-        
+
+        clienteWiFi.stop();
         clienteHTTP.end();
 
         return (mensagem);
@@ -45,7 +48,7 @@ ServicoRede::obterDados(const char* arquivo, const char* estado)
 void
 ServicoRede::desconectar(void)
 {
-        WiFi.disconnect();
+        WiFi.disconnect(true);
 }
 
 void
