@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "ServicoRede.h"
 
-enum Estado{ABERTO, FECHADO};
+enum Estado { ABERTO, FECHADO };
 
 class Valvula
 {
