@@ -34,7 +34,6 @@ ServicoRede::obterDados(const char* arquivo, const char* estado)
                 return ("1");
                 
         mensagem = clienteHTTP.getString();
-        Serial.println(mensagem);
 
         clienteWiFi.stop();
         clienteHTTP.end();
