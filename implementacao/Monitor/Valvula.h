@@ -10,8 +10,8 @@ class Valvula
 {
 public:
         Valvula(int, ServicoRede*, const char*);
-        void abrir();
-        void fechar();
+        void abrir(void);
+        void fechar(void);
 private:
         int pino;
         ServicoRede* servicoRede;

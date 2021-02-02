@@ -8,7 +8,7 @@ Valvula::Valvula(int pino, ServicoRede* servicoRede, const char* endereco)
 }
 
 void
-Valvula::abrir()
+Valvula::abrir(void)
 {
         servicoRede->conectar();
         digitalWrite(pino, HIGH);
@@ -17,7 +17,7 @@ Valvula::abrir()
 }
 
 void
-Valvula::fechar()
+Valvula::fechar(void)
 {
         servicoRede->conectar();
         digitalWrite(pino, LOW);
