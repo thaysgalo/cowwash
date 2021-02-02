@@ -1,11 +1,7 @@
 #include "ServicoRede.h"
 
-ServicoRede::ServicoRede(const char* nome, const char* senha, const char* endereco, int porta)
+ServicoRede::ServicoRede(const char* nome, const char* senha, const char* endereco, int porta) : nome(nome), senha(senha), endereco(endereco), porta(porta)
 {
-        this->nome = nome;
-        this->senha = senha;
-        this->endereco = endereco;
-        this->porta = porta;
 }
 
 bool
@@ -38,6 +34,7 @@ ServicoRede::obterDados(const char* arquivo, const char* estado)
                 return ("1");
                 
         mensagem = clienteHTTP.getString();
+        Serial.println(mensagem);
 
         clienteWiFi.stop();
         clienteHTTP.end();

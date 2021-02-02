@@ -1,10 +1,7 @@
 #include "Valvula.h"
 
-Valvula::Valvula(int pino, ServicoRede* servicoRede, const char* endereco)
+Valvula::Valvula(int pino, ServicoRede* servicoRede, const char* endereco) : pino(pino), servicoRede(servicoRede), endereco(endereco)
 {
-        this->pino = pino;
-        this->servicoRede = servicoRede;
-        this->endereco = endereco;
 }
 
 void
