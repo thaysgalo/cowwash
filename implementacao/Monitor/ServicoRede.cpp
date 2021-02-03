@@ -30,9 +30,7 @@ ServicoRede::obterDados(const char* arquivo, const char* estado)
         
         clienteHTTP.begin(clienteWiFi, (String)"http://" + endereco + (String)":" + porta + (String)"/" + arquivo + (String)"?estado=" + estado);
         codigoRetornoHTTP = clienteHTTP.GET();
-
         mensagem = (codigoRetornoHTTP < 0 || codigoRetornoHTTP != HTTP_CODE_OK) ? mensagem = "1" : mensagem = clienteHTTP.getString();
-        
         clienteWiFi.stop();
         clienteHTTP.end();
 
