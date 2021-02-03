@@ -18,6 +18,7 @@ private:
         const char* endereco;
 
         int obterPeriodo(Estado);
+        void executar(int periodo, uint8_t tensaoPino);
 };
 
 #endif

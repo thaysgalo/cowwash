@@ -7,23 +7,30 @@ Valvula::Valvula(int pino, ServicoRede* servicoRede, const char* endereco) : pin
 void
 Valvula::abrir(void)
 {
-        servicoRede->conectar();
-        digitalWrite(pino, HIGH);
-        delay(obterPeriodo(Estado::ABERTO) * 10000);
-        servicoRede->desconectar();
+        executar(obterPeriodo(Estado::ABERTO), HIGH);
 }
 
 void
 Valvula::fechar(void)
 {
-        servicoRede->conectar();
-        digitalWrite(pino, LOW);
-        delay(obterPeriodo(Estado::FECHADO) * 10000);
-        servicoRede->desconectar();
+        executar(obterPeriodo(Estado::FECHADO), LOW);
 }
 
 int
 Valvula::obterPeriodo(Estado estado)
 {
-        return (estado == Estado::ABERTO ? servicoRede->obterDados(endereco, "aberto").toInt() : servicoRede->obterDados(endereco, "fechado").toInt());
+        int periodo;
+        
+        servicoRede->conectar();
+        periodo = estado == Estado::ABERTO ? servicoRede->obterDados(endereco, "aberto").toInt() : servicoRede->obterDados(endereco, "fechado").toInt();
+        servicoRede->desconectar();
+        
+        return (periodo);
+}
+
+void
+Valvula::executar(int periodo, uint8_t tensaoPino)
+{
+        digitalWrite(pino, tensaoPino);
+        delay(periodo * 10000);
 }
