@@ -26,9 +26,10 @@ ServicoRede::obterDados(const char* arquivo, const char* estado)
         HTTPClient clienteHTTP;
         WiFiClient clienteWiFi;
         String mensagem;
+        int codigoRetornoHTTP;
         
         clienteHTTP.begin(clienteWiFi, (String)"http://" + endereco + (String)":" + porta + (String)"/" + arquivo + (String)"?estado=" + estado);
-        int codigoRetornoHTTP = clienteHTTP.GET();
+        codigoRetornoHTTP = clienteHTTP.GET();
         
         if (codigoRetornoHTTP < 0 || codigoRetornoHTTP != HTTP_CODE_OK)
                 return ("1");
