@@ -32,9 +32,9 @@ ServicoRede::obterDados(const char* arquivo, const char* estado)
         codigoRetornoHTTP = clienteHTTP.GET();
         
         if (codigoRetornoHTTP < 0 || codigoRetornoHTTP != HTTP_CODE_OK)
-                return ("1");
-                
-        mensagem = clienteHTTP.getString();
+                mensagem = "1";
+        else
+                mensagem = clienteHTTP.getString();
 
         clienteWiFi.stop();
         clienteHTTP.end();
