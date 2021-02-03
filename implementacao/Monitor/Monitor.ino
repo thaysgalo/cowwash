@@ -6,8 +6,6 @@ Valvula valvula(5, &servicoRede, "/valvula/consulta-periodo");
 
 void setup()
 {
-        // DESCOMENTAR A LINHA ABAIXO APENAS QUANDO FOR UTILIZAR O SERIAL MONITOR.
-        //Serial.begin(115200);
 }
 
 void loop() 
