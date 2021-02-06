@@ -8,16 +8,16 @@ import javax.servlet.ServletException;
 
 public class Valvula extends HttpServlet {
     public void doGet(HttpServletRequest requisicaoHTTP, HttpServletResponse respostaHTTP) throws ServletException, IOException {
-        PrintWriter escritorWeb = respostaHTTP.getWriter();
-        respostaHTTP.setContentType("application/json");
+        PrintWriter escritorHTTP = respostaHTTP.getWriter();
+        respostaHTTP.setContentType("text/plain");
         respostaHTTP.setCharacterEncoding("UTF-8");
 
         // OS VALORES RETORNADOS ABAIXO ("1" E "2") DEVERÃO VIR DO BANCO DE DADOS.
         String query = requisicaoHTTP.getQueryString();
         if (query.contains("aberto"))
-            escritorWeb.print("1");
+            escritorHTTP.print("1");
         else
-            escritorWeb.print("2");
-        escritorWeb.flush();
+            escritorHTTP.print("2");
+        escritorHTTP.flush();
     }
 }
