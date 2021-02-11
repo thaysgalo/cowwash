@@ -37,7 +37,7 @@
     a) Criar uma cópia da biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
 	
     b) Executar a compilação:
-        - javac -cp .:/usr/share/tomcat9/lib/servlet-api.jar Valvula.java
+        - javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
 
 4. COPIAR:
 

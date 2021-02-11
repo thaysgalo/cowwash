@@ -1,7 +1,7 @@
 <web-app>
 	<servlet>
 		<servlet-name>valvula</servlet-name>
-		<servlet-class>Valvula</servlet-class>
+		<servlet-class>cowwash.controlador.ValvulaControlador</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>valvula</servlet-name>
