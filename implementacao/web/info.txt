@@ -20,8 +20,8 @@
 	d) MySQL Server (última versão):
 		- sudo apt install mysql-server
 	
-	e) Biblioteca (driver) Java para MySQL:
-		- sudo apt install libmariadb-java
+    e) Biblioteca (driver) Java para MySQL:
+        - sudo apt install libmariadb-java
 
     f) Repositório Git:
         - sudo apt install git
@@ -50,17 +50,17 @@
 
 4. COPIAR
 
-	a) A biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
+    a) A biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
 
-	b) A biblioteca "mariadb-java-client.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
-    
+    b) A biblioteca "mariadb-java-client.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
+
     c) A biblioteca "jstl-1.2.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
 
 5. COMPILAR:
 	
     Entre no diretório do projeto, na sua máquina:
     - cd /<diretorio_do_projeto>/cowwash
-	- javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
+    - javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
 
     NOTA: antes de compilar, certifique-se de que não há bytecodes antigos (lixo binário), executando a seguinte instrução:
     - find /<diretorio_do_projeto>/cowwash/ -name "*class" -delete
@@ -69,14 +69,14 @@
 
 	Copiar o web.xml, os arquivos do client-side (jsp, css, js, etc) e os bytecodes do projeto para seus respectivos diretórios na estrutura do tomcat9. Para isso, faça:
 
-		cd /var/lib/tomcat9/webapps/ROOT/WEB-INF/classes
-		sudo rm -rf *
-		sudo cp /<diretorio_do_projeto>/cowwash/implementacao/web/web.xml ../
-		sudo cp -rf /<diretorio_do_projeto>/cowwash/implementacao/web/cowwash/ .
-		sudo find . -name "*java" -delete
-		sudo find . -name "*jsp" -exec mv -t ../../valvula/ {} +
+        cd /var/lib/tomcat9/webapps/ROOT/WEB-INF/classes
+        sudo rm -rf *
+        sudo cp /<diretorio_do_projeto>/cowwash/implementacao/web/web.xml ../
+        sudo cp -rf /<diretorio_do_projeto>/cowwash/implementacao/web/cowwash/ .
+        sudo find . -name "*java" -delete
+        sudo find . -name "*jsp" -exec mv -t ../../valvula/ {} +
         sudo find . -name "*css" -exec mv -t ../../valvula/ {} +
-		sudo systemctl restart tomcat9.service
+        sudo systemctl restart tomcat9.service
 
 7. TESTAR
 
