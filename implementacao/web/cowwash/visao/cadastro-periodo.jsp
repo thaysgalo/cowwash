@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -11,7 +12,7 @@
         <%
             if (request.getParameter("enviar") == null) {
         %>
-        <form method="POST">
+        <form method="POST" action="cadastro-periodo">
             Período (em minutos):
             <br>
             <input type="number" name="periodo" required>
@@ -20,8 +21,9 @@
             <br>
             <select name="estado" required>
                 <option value="" selected>[Selecione o Estado]</option>
-                <option value="Aberto">Aberto</option>
-                <option value="Fechado">Fechado</option>
+                <c:forEach items="${estados}" var="estado">
+                    <option value="${estado.id}">${estado.descricao}</option>
+                </c:forEach>
             </select>
             <br>
             <input type="reset" value="Limpar">
@@ -30,15 +32,13 @@
         <%
             }
             else {
-                String periodo = request.getParameter("periodo");
-                String estado = request.getParameter("estado");
         %>
             <h3>A seguinte configuração foi cadastrada:</h3>
             <ul>
-                <li>Período: <b><%= periodo %> minutos</b>;</li>
-                <li>Estado: <b><%= estado %></b>.</li>
+                <li>Período: <b><c:out value="${valvula.periodo}"></c:out> minutos</b>;</li>
+                <li>Estado: <b><c:out value="${valvula.estado.descricao}"></c:out></b>.</li>
             </ul>
-            <a href="<%= request.getRequestURI() %>">Voltar</a>
+            <a href="/valvula/cadastro-periodo">Voltar</a>
         <%
             }
         %>

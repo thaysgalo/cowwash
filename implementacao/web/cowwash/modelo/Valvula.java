@@ -8,11 +8,15 @@ public class Valvula {
     private Date dataRegistro;
     private Estado estado;
 
-    public Valvula(int id, int periodo, Date dataRegistro, int idEstado) {
-        this.id = id;
+    public Valvula(int periodo, int idEstado) {
         this.periodo = periodo;
-        this.dataRegistro = dataRegistro;
         estado = new Estado(idEstado);
+    }
+
+    public Valvula(int id, int periodo, Date dataRegistro, int idEstado) {
+        this(periodo, idEstado);
+        this.id = id;
+        this.dataRegistro = dataRegistro;
     }
 
     public int getId() {

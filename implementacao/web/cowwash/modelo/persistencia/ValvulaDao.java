@@ -13,19 +13,13 @@ import cowwash.modelo.Valvula;
 import cowwash.modelo.Util;
 
 public class ValvulaDao {
-	private Connection conexao;
-
-	public ValvulaDao() {
-		conexao = new FabricaConexao().obterConexao();
-	}
-
 	public void inserir(Valvula valvula) {
-		String scriptSQL = "INSERT INTO VALVULA (VALV_NU_PERIODO, VALV_DT_REGISTRO, ESTA_ID_ESTADO) VALUES (?, ?, ?);";
+		String scriptSQL = "INSERT INTO VALVULA (VALV_NU_PERIODO, VALV_DT_REGISTRO, ESTA_ID_ESTADO) VALUES (?, NOW(), ?);";
 
-		try (PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
+		try (Connection conexao = new FabricaConexao().obterConexao();
+            PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
 			preparedStatement.setInt(1, valvula.getPeriodo());
-			preparedStatement.setString(2, Util.obterTexto(valvula.getDataRegistro()));
-			preparedStatement.setInt(1, valvula.getEstado().getId());
+			preparedStatement.setInt(2, valvula.getEstado().getId());
 
 			preparedStatement.execute();
 		}
@@ -37,7 +31,8 @@ public class ValvulaDao {
 	public void remover(Valvula valvula) {
 		String scriptSQL = "DELETE FROM VALVULA WHERE VALV_ID_VALVULA = ?;";
 
-		try (PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
+		try (Connection conexao = new FabricaConexao().obterConexao();
+            PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
 			preparedStatement.setInt(1, valvula.getId());
 
 			preparedStatement.execute();
@@ -48,7 +43,8 @@ public class ValvulaDao {
 	}
 
 	public List<Valvula> listar() {
-		try (PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO, ESTA_ID_ESTADO FROM VALVULA;");
+		try (Connection conexao = new FabricaConexao().obterConexao();
+            PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO, ESTA_ID_ESTADO FROM VALVULA;");
 			ResultSet conjuntoDados = preparedStatement.executeQuery();) {
 			List<Valvula> valvulas = new ArrayList<>();
 			
@@ -69,7 +65,8 @@ public class ValvulaDao {
 	}
 
 	public Valvula obterAtual(Estado estado) {
-		try (PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO FROM VALVULA WHERE VALV_ID_VALVULA = (SELECT MAX(VALV_ID_VALVULA) FROM VALVULA WHERE ESTA_ID_ESTADO = ?);");) {
+		try (Connection conexao = new FabricaConexao().obterConexao();
+            PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO FROM VALVULA WHERE VALV_ID_VALVULA = (SELECT MAX(VALV_ID_VALVULA) FROM VALVULA WHERE ESTA_ID_ESTADO = ?);");) {
 			preparedStatement.setInt(1, estado.getId());
 			ResultSet conjuntoDados = preparedStatement.executeQuery();
 			Valvula valvula = null;

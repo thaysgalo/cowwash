@@ -1,10 +1,11 @@
 <web-app>
 	<servlet>
-		<servlet-name>valvula</servlet-name>
+		<servlet-name>Valvula</servlet-name>
 		<servlet-class>cowwash.controlador.ValvulaControlador</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>valvula</servlet-name>
+		<servlet-name>Valvula</servlet-name>
 		<url-pattern>/valvula/consulta-periodo</url-pattern>
+		<url-pattern>/valvula/cadastro-periodo</url-pattern>
 	</servlet-mapping>
 </web-app>
