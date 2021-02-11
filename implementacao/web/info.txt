@@ -6,20 +6,20 @@
 
 1. INSTALAR:
 
-	a) Java Development Kit - JDK (versão padrão para o OS Ubuntu):
-		- sudo apt install default-jdk
+    a) Java Development Kit - JDK (versão padrão para o OS Ubuntu):
+        - sudo apt install default-jdk
 
-	b) Apache HTTP Server 2:
-		- sudo apt install apache2
-		(após a instalação, acesse http://localhost para testar.)
+    b) Apache HTTP Server 2:
+        - sudo apt install apache2
+    (após a instalação, acesse http://localhost para testar.)
 
-	c) Apache Tomcat 9 (Java Web Server):
-		- sudo apt install tomcat9
-		(após a instalação, acesse http://localhost:8080 para testar.)
+    c) Apache Tomcat 9 (Java Web Server):
+        - sudo apt install tomcat9
+    (após a instalação, acesse http://localhost:8080 para testar.)
 
-	d) MySQL Server (última versão):
-		- sudo apt install mysql-server
-	
+    d) MySQL Server (última versão):
+        - sudo apt install mysql-server
+
     e) Biblioteca (driver) Java para MySQL:
         - sudo apt install libmariadb-java
 
