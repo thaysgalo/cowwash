@@ -69,7 +69,7 @@ public class ValvulaDao {
 	}
 
 	public Valvula obterAtual(Estado estado) {
-		try (PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO FROM VALVULA WHERE ESTA_ID_ESTADO = ?;");) {
+		try (PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO FROM VALVULA WHERE VALV_ID_VALVULA = (SELECT MAX(VALV_ID_VALVULA) FROM VALVULA WHERE ESTA_ID_ESTADO = ?);");) {
 			preparedStatement.setInt(1, estado.getId());
 			ResultSet conjuntoDados = preparedStatement.executeQuery();
 			Valvula valvula = null;

@@ -32,5 +32,5 @@ void
 Valvula::executar(int periodo, uint8_t tensaoPino)
 {
         digitalWrite(pino, tensaoPino);
-        delay(periodo * 10000);
+        delay(periodo * MINUTO);
 }

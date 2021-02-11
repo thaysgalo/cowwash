@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include "ServicoRede.h"
 
+#define MINUTO 60000
+
 enum Estado { ABERTO = 1, FECHADO };
 
 class Valvula
