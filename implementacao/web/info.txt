@@ -1,8 +1,8 @@
-###################################################
-#                                                 #
-# INSTRUÇÕES PARA EXECUTAR O MÓDULO WEB (SERVLET) #
-#                                                 #
-###################################################
+####################################################################
+#                                                 				   #
+# INSTRUÇÕES PARA CONFIGURAR O PROJETO DO SERVIDOR APACHE TOMCAT 9 #
+#                                                 				   #
+####################################################################
 
 1. INSTALAR:
 
@@ -17,7 +17,7 @@
 		- sudo apt-get install tomcat9
 		(após a instalação, acesse http://localhost:8080 para testar.)
 
-2. Criar (sudo) a seguinte estrutura de diretórios em "/var/lib/tomcat9/webapps/ROOT":
+2. CRIAR (sudo) A SEGUINTE ESTRUTURA DE DIRETÓRIOS EM "/var/lib/tomcat9/webapps/ROOT":
 	
 	/var/lib/tomcat9/webapps/ROOT
 	|
@@ -32,27 +32,28 @@
 	          |
 	          ------------ web.xml
 
-3. Compilar a programa Valvula.java:
+3. COPIAR
 
-    a) Criar uma cópia da biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
+    a) A biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
+
+	b) A biblioteca "mariadb-java-client.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
+
+4. COMPILAR:
 	
-    b) Executar a compilação:
-        - javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
+	- javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
 
-4. COPIAR:
+5. CONFIGURAR:
 
-	a) Copiar o arquivo web.xml para para o diretório "/var/lib/tomcat9/webapps/ROOT/WEB-INF/"
+	Copiar o web.xml e os bytecodes do projeto para o diretório "/var/lib/tomcat9/webapps/ROOT/WEB-INF/classes". Para isso, faça:
 
-	b) Copiar o bytecode Valvula.class para o diretório "/var/lib/tomcat9/webapps/ROOT/WEB-INF/classes"
+		cd /var/lib/tomcat9/webapps/ROOT/WEB-INF/classes
+		sudo rm -rf *
+		sudo cp /<diretorio_do_projeto>/cowwash/implementacao/web/web.xml ../
+		sudo cp -rf /<diretorio_do_projeto>/cowwash/implementacao/web/cowwash/ .
+		sudo find . -name "*java" -delete
+		sudo find . -name "*jsp" -exec mv -t ../../ {} +
+		sudo systemctl restart tomcat9.service
 
-5. Reiniciar o serviço do tomcat9:
+6. TESTAR
 
-	- sudo systemctl restart tomcat9
-
-6. Testar a aplicação em funcionamento, acessando (pelo browser):
-
-    - http://192.168.0.17:8080/valvula/consulta-periodo?estado=aberto
-
-    - http://192.168.0.17:8080/valvula/consulta-periodo?estado=fechado
-
-	PS: altere o IP acima (192.168.0.17) pelo IP do servidor web.
+    - http://localhost:8080/valvula/consulta-periodo?estado=1
