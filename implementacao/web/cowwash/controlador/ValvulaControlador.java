@@ -33,7 +33,7 @@ public class ValvulaControlador extends HttpServlet {
         requisicaoHTTP.setAttribute("valvula", valvula);
         
         RequestDispatcher despachoRequisicao = requisicaoHTTP.getRequestDispatcher(FORMULARIO + SUFIXO_JSP);
-		despachoRequisicao.forward(requisicaoHTTP, respostaHTTP);
+        despachoRequisicao.forward(requisicaoHTTP, respostaHTTP);
 	}
 
     private void processarRequisicao(HttpServletRequest requisicaoHTTP, HttpServletResponse respostaHTTP) throws ServletException, IOException {
