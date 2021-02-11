@@ -1,6 +1,6 @@
 #include "Valvula.h"
 
-Valvula::Valvula(int pino, ServicoRede* servicoRede, const char* endereco) : pino(pino), servicoRede(servicoRede), endereco(endereco)
+Valvula::Valvula(int pino, ServicoRede* servicoRede, const char* endereco, const char* atributoConsulta) : pino(pino), servicoRede(servicoRede), endereco(endereco), atributoConsulta(atributoConsulta)
 {
 }
 
@@ -22,7 +22,7 @@ Valvula::obterPeriodo(Estado estado)
         int periodo;
         
         servicoRede->conectar();
-        periodo = estado == Estado::ABERTO ? servicoRede->obterDados(endereco, "aberto").toInt() : servicoRede->obterDados(endereco, "fechado").toInt();
+        periodo = servicoRede->obterDados(endereco, atributoConsulta, (int)estado).toInt();
         servicoRede->desconectar();
         
         return (periodo);

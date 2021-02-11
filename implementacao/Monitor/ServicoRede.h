@@ -11,7 +11,7 @@ public:
         
         bool conectar(void);
         void desconectar(void);
-        String obterDados(const char*, const char*);
+        String obterDados(const char*, const char*, int);
 
 private:
         const char* nome;

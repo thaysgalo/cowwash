@@ -21,14 +21,14 @@ ServicoRede::conectar(void)
 }
 
 String
-ServicoRede::obterDados(const char* arquivo, const char* estado)
+ServicoRede::obterDados(const char* arquivo, const char* atributoConsulta, int estado)
 {
         HTTPClient clienteHTTP;
         WiFiClient clienteWiFi;
         String mensagem;
         int codigoRetornoHTTP;
         
-        clienteHTTP.begin(clienteWiFi, (String)"http://" + endereco + (String)":" + porta + (String)"/" + arquivo + (String)"?estado=" + estado);
+        clienteHTTP.begin(clienteWiFi, (String)"http://" + endereco + (String)":" + porta + (String)"/" + arquivo + (String)"?" + atributoConsulta + (String)"=" + estado);
         codigoRetornoHTTP = clienteHTTP.GET();
         mensagem = (codigoRetornoHTTP < 0 || codigoRetornoHTTP != HTTP_CODE_OK) ? "1" : clienteHTTP.getString();
         clienteWiFi.stop();
