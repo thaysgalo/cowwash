@@ -6,84 +6,83 @@
 
 1. INSTALAR:
 
-    a) Java Development Kit - JDK (versão padrão para o OS Ubuntu):
-        - sudo apt install default-jdk
+	a) Java Development Kit - JDK (versão padrão para o OS Ubuntu):
+		- sudo apt install default-jdk
 
-    b) Apache HTTP Server 2:
-        - sudo apt install apache2
-    (após a instalação, acesse http://localhost para testar.)
+	b) Apache HTTP Server 2:
+		- sudo apt install apache2
+		(após a instalação, acesse http://localhost para testar.)
 
-    c) Apache Tomcat 9 (Java Web Server):
-        - sudo apt install tomcat9
-    (após a instalação, acesse http://localhost:8080 para testar.)
+	c) Apache Tomcat 9 (Java Web Server):
+		- sudo apt install tomcat9
+		(após a instalação, acesse http://localhost:8080 para testar.)
 
-    d) MySQL Server (última versão):
-        - sudo apt install mysql-server
+	d) MySQL Server (última versão):
+		- sudo apt install mysql-server
 
-    e) Biblioteca (driver) Java para MySQL:
-        - sudo apt install libmariadb-java
+	e) Biblioteca (driver) Java para MySQL:
+		- sudo apt install libmariadb-java
 
-    f) Repositório Git:
-        - sudo apt install git
+	f) Repositório Git:
+		- sudo apt install git
 
 2. BAIXAR O PROJETO NA PLATAFORMA GITHUB:
 
-    Escolha (ou crie) um diretório em seu computador e faça o download do projeto. Para tal, execute a seguinte instrução:
-        - git clone https://github.com/thaysgalo/cowwash.git
+	Escolha (ou crie) um diretório em seu computador e faça o download do projeto. Para tal, execute a seguinte instrução:
+		- git clone https://github.com/thaysgalo/cowwash.git
 
 3. CRIAR (sudo) A SEGUINTE ESTRUTURA DE DIRETÓRIOS EM "/var/lib/tomcat9/webapps/ROOT":
-	
-	/var/lib/tomcat9/webapps/ROOT
-	|
-	|
-	--------- WEB-INF/
-	|         |
-	|         ------------ classes/
-	|         |            |
-	|         |            ------------ (arquivos .class)
-	|         |
-	|         ------------ web.xml
-    |
-    ----------valvula/
-              |
-              ------------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
+
+		/var/lib/tomcat9/webapps/ROOT
+		|
+		--------- WEB-INF/
+		|		|
+		|		--------- classes/
+		|		|		|
+		|		|		------ (arquivos .class)
+		|		|
+		|		--------- web.xml
+		|
+		----------valvula/
+		|
+		------------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
 
 4. COPIAR
 
-    a) A biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
+	a) A biblioteca "javax.servlet-api-4.0.1.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/" 
 
-    b) A biblioteca "mariadb-java-client.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
+	b) A biblioteca "mariadb-java-client.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
 
-    c) A biblioteca "jstl-1.2.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
+	c) A biblioteca "jstl-1.2.jar" (que está em "https://github.com/thaysgalo/cowwash/tree/main/implementacao/web/lib") para o diretório "/usr/share/tomcat9/lib/"
 
 5. COMPILAR:
-	
-    Entre no diretório do projeto, na sua máquina:
-    - cd /<diretorio_do_projeto>/cowwash
-    - javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
 
-    NOTA: antes de compilar, certifique-se de que não há bytecodes antigos (lixo binário), executando a seguinte instrução:
-    - find /<diretorio_do_projeto>/cowwash/ -name "*class" -delete
+	Entre no diretório do projeto, na sua máquina:
+		- cd /<diretorio_do_projeto>/cowwash
+		- javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
+
+	NOTA: antes de compilar, certifique-se de que não há bytecodes antigos (lixo binário), executando a seguinte instrução:
+		- find /<diretorio_do_projeto>/cowwash/ -name "*class" -delete
 
 6. CONFIGURAR:
 
 	Copiar o web.xml, os arquivos do client-side (jsp, css, js, etc) e os bytecodes do projeto para seus respectivos diretórios na estrutura do tomcat9. Para isso, faça:
 
-        cd /var/lib/tomcat9/webapps/ROOT/WEB-INF/classes
-        sudo rm -rf *
-        sudo cp /<diretorio_do_projeto>/cowwash/implementacao/web/web.xml ../
-        sudo cp -rf /<diretorio_do_projeto>/cowwash/implementacao/web/cowwash/ .
-        sudo find . -name "*java" -delete
-        sudo find . -name "*jsp" -exec mv -t ../../valvula/ {} +
-        sudo find . -name "*css" -exec mv -t ../../valvula/ {} +
-        sudo systemctl restart tomcat9.service
+		- cd /var/lib/tomcat9/webapps/ROOT/WEB-INF/classes
+		- sudo rm -rf *
+		- sudo cp /<diretorio_do_projeto>/cowwash/implementacao/web/web.xml ../
+		- sudo cp -rf /<diretorio_do_projeto>/cowwash/implementacao/web/cowwash/ .
+		- sudo find . -name "*java" -delete
+		- sudo find . -name "*jsp" -exec mv -t ../../valvula/ {} +
+		- sudo find . -name "*css" -exec mv -t ../../valvula/ {} +
+		- sudo systemctl restart tomcat9.service
 
 7. TESTAR
 
-    Utilizando o programa curl, execute a instrução abaixo:
-    - curl http://192.168.0.17:8080/valvula/consulta-periodo?estado=1 (para testar o servico)
-    Ou
-    Utilizando um browser de sua escolha, acesse:
-    - http://192.168.0.17:8080/valvula/cadastro-periodo (para testar o formulário)
+	Utilizando o programa curl, execute a instrução abaixo:
+		- curl http://192.168.0.17:8080/valvula/consulta-periodo?estado=1 (para testar o servico)
+	Ou
+	Utilizando um browser de sua escolha, acesse:
+		- http://192.168.0.17:8080/valvula/cadastro-periodo (para testar o formulário)
 
-    PS: possivelmente será necessário alterar o IP acima (192.168.0.17) para o IP da máquina servidora.
+	PS: possivelmente será necessário alterar o IP acima (192.168.0.17) para o IP da máquina servidora.
