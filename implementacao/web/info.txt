@@ -43,9 +43,9 @@
 		|		|
 		|		--------- web.xml
 		|
-		----------valvula/
+		--------- valvula/
 		|
-		------------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
+		--------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
 
 4. COPIAR
 
