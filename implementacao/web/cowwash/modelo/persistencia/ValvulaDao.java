@@ -17,7 +17,7 @@ public class ValvulaDao {
 		String scriptSQL = "INSERT INTO VALVULA (VALV_NU_PERIODO, VALV_DT_REGISTRO, ESTA_ID_ESTADO) VALUES (?, NOW(), ?);";
 
 		try (Connection conexao = new FabricaConexao().obterConexao();
-            PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
+			PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
 			preparedStatement.setInt(1, valvula.getPeriodo());
 			preparedStatement.setInt(2, valvula.getEstado().getId());
 
@@ -32,7 +32,7 @@ public class ValvulaDao {
 		String scriptSQL = "DELETE FROM VALVULA WHERE VALV_ID_VALVULA = ?;";
 
 		try (Connection conexao = new FabricaConexao().obterConexao();
-            PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
+			PreparedStatement preparedStatement = conexao.prepareStatement(scriptSQL);) {
 			preparedStatement.setInt(1, valvula.getId());
 
 			preparedStatement.execute();
@@ -44,7 +44,7 @@ public class ValvulaDao {
 
 	public List<Valvula> listar() {
 		try (Connection conexao = new FabricaConexao().obterConexao();
-            PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO, ESTA_ID_ESTADO FROM VALVULA;");
+			PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO, ESTA_ID_ESTADO FROM VALVULA;");
 			ResultSet conjuntoDados = preparedStatement.executeQuery();) {
 			List<Valvula> valvulas = new ArrayList<>();
 			
@@ -66,7 +66,7 @@ public class ValvulaDao {
 
 	public Valvula obterAtual(Estado estado) {
 		try (Connection conexao = new FabricaConexao().obterConexao();
-            PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO FROM VALVULA WHERE VALV_ID_VALVULA = (SELECT MAX(VALV_ID_VALVULA) FROM VALVULA WHERE ESTA_ID_ESTADO = ?);");) {
+			PreparedStatement preparedStatement = conexao.prepareStatement("SELECT VALV_ID_VALVULA, VALV_NU_PERIODO, VALV_DT_REGISTRO FROM VALVULA WHERE VALV_ID_VALVULA = (SELECT MAX(VALV_ID_VALVULA) FROM VALVULA WHERE ESTA_ID_ESTADO = ?);");) {
 			preparedStatement.setInt(1, estado.getId());
 			ResultSet conjuntoDados = preparedStatement.executeQuery();
 			Valvula valvula = null;

@@ -10,9 +10,9 @@ import java.util.List;
 import cowwash.modelo.Estado;
 
 public class EstadoDao {
-    public List<Estado> listar() {
+	public List<Estado> listar() {
 		try (Connection conexao = new FabricaConexao().obterConexao();
-            PreparedStatement preparedStatement = conexao.prepareStatement("SELECT ESTA_ID_ESTADO, ESTA_TX_DESCRICAO FROM ESTADO;");
+			PreparedStatement preparedStatement = conexao.prepareStatement("SELECT ESTA_ID_ESTADO, ESTA_TX_DESCRICAO FROM ESTADO;");
 			ResultSet conjuntoDados = preparedStatement.executeQuery();) {
 			List<Estado> estados = new ArrayList<>();
 			
@@ -32,7 +32,7 @@ public class EstadoDao {
 
 	public Estado obter(Integer id) {
 		try (Connection conexao = new FabricaConexao().obterConexao();
-            PreparedStatement preparedStatement = conexao.prepareStatement("SELECT ESTA_TX_DESCRICAO FROM ESTADO WHERE ESTA_ID_ESTADO = ?;");) {
+			PreparedStatement preparedStatement = conexao.prepareStatement("SELECT ESTA_TX_DESCRICAO FROM ESTADO WHERE ESTA_ID_ESTADO = ?;");) {
 			preparedStatement.setInt(1, id);
 			ResultSet conjuntoDados = preparedStatement.executeQuery();
 			Estado estado = null;
