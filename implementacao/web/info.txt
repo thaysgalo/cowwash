@@ -33,19 +33,19 @@
 
 3. CRIAR (sudo) A SEGUINTE ESTRUTURA DE DIRETÓRIOS EM "/var/lib/tomcat9/webapps/ROOT":
 
-		/var/lib/tomcat9/webapps/ROOT
-		|
-		--------- WEB-INF/
-		|		|
-		|		--------- classes/
-		|		|		|
-		|		|		------ (arquivos .class)
-		|		|
-		|		--------- web.xml
-		|
-		--------- valvula/
-		|
-		--------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
+	/var/lib/tomcat9/webapps/ROOT
+	|
+	--------- WEB-INF/
+	|		|
+	|		--------- classes/
+	|		|		|
+	|		|		------ (arquivos .class)
+	|		|
+	|		--------- web.xml
+	|
+	--------- valvula/
+	|
+	--------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
 
 4. COPIAR
 
