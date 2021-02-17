@@ -44,8 +44,8 @@
 	|		--------- web.xml
 	|
 	--------- valvula/
-	|
-	--------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
+			|
+			--------- cadastro-valvula.jsp e estilo.css (e demais futuros arquivos do componente Visao)
 
 4. COPIAR
 
@@ -58,11 +58,11 @@
 5. COMPILAR:
 
 	Entre no diretório do projeto, na sua máquina:
-		- cd /<diretorio_do_projeto>/cowwash
+		- cd /<diretorio_do_projeto>/cowwash/implementacao/web/
 		- javac -cp .:lib/javax.servlet-api-4.0.1.jar cowwash/controlador/ValvulaControlador.java
 
 	NOTA: antes de compilar, certifique-se de que não há bytecodes antigos (lixo binário), executando a seguinte instrução:
-		- find /<diretorio_do_projeto>/cowwash/ -name "*class" -delete
+		- find /<diretorio_do_projeto>/cowwash/implementacao/web/cowwash/ -name "*class" -delete
 
 6. CONFIGURAR:
 

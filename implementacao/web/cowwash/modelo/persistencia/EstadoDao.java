@@ -30,7 +30,7 @@ public class EstadoDao {
 		}
 	}
 
-	public Estado obter(Integer id) {
+	public Estado obter(int id) {
 		try (Connection conexao = new FabricaConexao().obterConexao();
 			PreparedStatement preparedStatement = conexao.prepareStatement("SELECT ESTA_TX_DESCRICAO FROM ESTADO WHERE ESTA_ID_ESTADO = ?;");) {
 			preparedStatement.setInt(1, id);
