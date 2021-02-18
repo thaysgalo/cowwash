@@ -53,7 +53,11 @@ public class ValvulaControlador extends HttpServlet {
 				respostaHTTP.setContentType("text/plain");
 				respostaHTTP.setCharacterEncoding("UTF-8");
 
-				Valvula valvula = new ValvulaManager().obterAtual(new Estado(Integer.parseInt(requisicaoHTTP.getParameter("estado"))));
+				//Valvula valvula = new ValvulaManager().obterAtual(new Estado(Integer.parseInt(requisicaoHTTP.getParameter("estado"))));
+				int idEstado = Integer.parseInt(requisicaoHTTP.getParameter("estado"));
+				Estado estado = new Estado(idEstado);
+				ValvulaManager valvulaManager = new ValvulaManager();
+				Valvula valvula = valvulaManager.obterAtual(estado);
 				
 				escritorHTTP.print(valvula == null ? 0 : valvula.getPeriodo());
 				escritorHTTP.flush();

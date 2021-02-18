@@ -1,6 +1,6 @@
 #include "ServicoRede.h"
 
-ServicoRede::ServicoRede(const char* nome, const char* senha, const char* endereco, int porta) : nome(nome), senha(senha), endereco(endereco), porta(porta)
+ServicoRede::ServicoRede(const char* nome, const char* senha, const char* endereco, const int porta) : nome(nome), senha(senha), endereco(endereco), porta(porta)
 {
 }
 
@@ -21,7 +21,7 @@ ServicoRede::conectar(void)
 }
 
 String
-ServicoRede::obterDados(const char* arquivo, const char* atributoConsulta, int estado)
+ServicoRede::obterDados(const char* arquivo, const char* atributoConsulta, const int estado)
 {
         HTTPClient clienteHTTP;
         WiFiClient clienteWiFi;
